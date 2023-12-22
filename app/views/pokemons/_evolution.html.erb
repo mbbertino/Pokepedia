@@ -1,0 +1,11 @@
+<%# locals: (evolution:) -%>
+
+<div class="flex flex-col gap-2">
+  <% evolution.each do |pokemon| %>
+    <%= link_to pokemon do %>
+      <% if pokemon.default_sprite.attached? %>
+        <%= image_tag pokemon.default_sprite, loading: :lazy, class: " h-20" %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

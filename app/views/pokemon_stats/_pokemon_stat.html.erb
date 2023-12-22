@@ -1,0 +1,12 @@
+<%# locals: (pokemon_stat:, pokemon_type:) -%>
+
+<div class="text-xs grid grid-cols-6 py-1">
+  <div class="opacity-50"><%= pokemon_stat.abbreviated_stat_identifier %></div>
+  <div class="pl-2 opacity-90"><%= pokemon_stat.base_stat %></div>
+
+  <div class="col-span-4">
+    <div class="w-full bg-gray-200 rounded-full h-full">
+      <div class="<%= bg_from_type(pokemon_type)%> h-full rounded-full" style="width: <%= pokemon_stat.base_stat_percentage %>%;"></div>
+    </div>
+  </div>
+</div>
