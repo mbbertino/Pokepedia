@@ -1,65 +1,14 @@
-<%# locals: (pokemon:, context: :show) -%>
+<%# locals: (pokemon:) -%>
 
-<% if context == :show %>
-  <div class="p-8 flex flex-col gap-4 bg-gray-50 border-gray-800 border-4 rounded-md h-full overflow-y-scroll">
-    <div class="grid justify-center relative border-gray-800 border-4 rounded-md">
-      <div class="absolute w-full bg-gray-700 rounded-sm h-full"></div>
-
-      <div class="relative">
-        <% if pokemon.default_sprite.attached? %>
-          <%= image_tag pokemon.default_sprite, loading: :lazy, class: "h-48" %>
-        <% end %>
-      </div>
+<%= link_to pokemon, data: { turbo_frame: "pokemon_details" } do %>
+  <div class="flex flex-column gap-4 p-4 hover:bg-gray-50 hover:cursor-pointer border-b-2 border-gray-300">
+    <div class="grid content-center">
+      <%= image_tag pokemon.default_sprite, loading: :lazy, class: "h-14" %>
     </div>
 
-    <div class="flex justify-between items-center">
-      <div class="rounded-full border-gray-800 border-4 bg-red-500 h-8 w-8"></div>
-
-      <div class="text-center">
-        <div class="text-xs opacity-50 italic">#<%= pokemon.order.to_s.rjust(4, '0') %></div>
-        <div class="text-xl font-bold opacity-90"><%= pokemon.name.humanize%></div>
-        <div class=""><%= render pokemon.types %></div>
-      </div>
-
-      <div class="flex flex-col gap-2 w-8">
-        <div class="border-gray-700 border-2 rounded-full"></div>
-        <div class="border-gray-700 border-2 rounded-full"></div>
-        <div class="border-gray-700 border-2 rounded-full"></div>
-      </div>
-    </div>
-
-    <div>
-      <div class="text-md font-semibold">Description</div>
-      <div class="text-sm"><%= pokemon.description %></div>
-    </div>
-
-    <div>
-      <div class="text-md font-semibold">Stats</div>
-      <%= render pokemon.pokemon_stats, pokemon_type: pokemon.pokemon_types.first.type %>
-    </div>
-
-    <div>
-      <div class="text-md font-semibold">Evolutions</div>
-      <div class="flex flex-between items-center">
-        <%= render partial: "evolution",
-                   collection: pokemon.full_evolution_chain,
-                   spacer_template: "pokemons/evolution_spacer"%>
-      </div>
+    <div class="grow flex justify-between items-center">
+      <div class="text-md font-bold opacity-90"><%= pokemon.name.humanize%></div>
+      <div><%= render pokemon.types %></div>
     </div>
   </div>
-<% else %>
-  <%= link_to pokemon, data: { turbo_frame: "pokemon_details" } do %>
-    <div class="flex flex-column gap-4 p-4 hover:bg-gray-50 hover:cursor-pointer border-b-2 border-gray-300">
-      <div class="grid content-center">
-        <% if pokemon.default_sprite.attached? %>
-          <%= image_tag pokemon.default_sprite, loading: :lazy, class: "h-14" %>
-        <% end %>
-      </div>
-
-      <div class="grow flex justify-between items-center">
-        <div class="text-md font-bold opacity-90"><%= pokemon.name.humanize%></div>
-        <div><%= render pokemon.types %></div>
-      </div>
-    </div>
-  <% end %>
 <% end %>

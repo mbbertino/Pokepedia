@@ -2,7 +2,6 @@
 
 pin "application", preload: true
 pin "@hotwired/turbo-rails", to: "turbo.min.js", preload: true
-pin "colorthief", to: "https://ga.jspm.io/npm:colorthief@2.4.0/dist/color-thief.mjs"
 pin "@hotwired/stimulus", to: "stimulus.min.js", preload: true
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 pin_all_from "app/javascript/controllers", under: "controllers"
