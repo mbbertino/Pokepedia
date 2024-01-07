@@ -1,0 +1,76 @@
+<div class="h-screen flex items-center">
+  <div>
+    <div class="flex">
+      <div class="w-[480px] border-8 border-gray-800 border-b-0  p-4 rounded-tl-md rounded-tr-md">
+        <div class="flex gap-4">
+          <div class="rounded-full border-gray-800 border-4 h-12 w-12">
+            <div class="rounded-full border-gray-50 border-4 bg-cyan-500 h-full w-full"></div>
+          </div>
+
+          <div class="flex gap-1">
+            <div class="rounded-full border-gray-800 border-4 bg-red-500 h-4 w-4"></div>
+            <div class="rounded-full border-gray-800 border-4 bg-yellow-500 h-4 w-4"></div>
+            <div class="rounded-full border-gray-800 border-4 bg-green-500 h-4 w-4"></div>
+          </div>
+        </div>
+      </div>
+      <div class="w-8"></div>
+      <div class="flex justify-between items-center grow pl-6 pr-9">
+        <div>
+          <h2 class="text-white text-2xl tracking-wider drop-shadow-[4px_4px_rgba(25,25,27,0.5)]"
+              style="font-family: 'Press Start 2P', system-ui;">
+            PokePedia
+          </h2>
+          <div class="text-white text-sm opacity-80">
+            Made with <span class="text-yellow-300">&hearts;</span> by <a target="_blank" href="https://www.mattbertino.com" class="text-yellow-300 underline hover:text-yellow-400">Matt Bertino</a>
+          </div>
+        </div>
+        <button data-controller="pwa-installer"
+                hidden
+                data-action="pwa-installer#install"
+                class="inline-flex items-center gap-x-1.5 rounded-md bg-yellow-300 px-2.5 py-1.5 text-md font-semibold text-gray-800 hover:bg-yellow-400 border-4 border-gray-800 shadow-[8px_8px_rgba(25,25,27,0.5)]">
+          <%= render 'icons/download' %>
+          Install App
+        </button>
+      </div>
+    </div>
+
+    <div class="flex border-8 border-gray-800 shadow-[8px_8px_rgba(25,25,27,0.5)] rounded-b-md rounded-tr-md h-[644px]">
+      <div class="w-[464px] p-1 h-full">
+        <div class=" border-gray-800 p-6 rounded-md h-full">
+          <%= turbo_frame_tag :pokemon_details, src: Pokemon.first %>
+        </div>
+      </div>
+
+      <div class="w-8 border-gray-800 border-x-8 relative">
+        <div class="absolute top-8 w-full border-t-4 border-gray-800"></div>
+        <div class="absolute top-12 w-full border-t-4 border-gray-800"></div>
+        <div class="absolute bottom-8 w-full border-t-4 border-gray-800"></div>
+        <div class="absolute bottom-12 w-full border-t-4 border-gray-800"></div>
+      </div>
+
+      <div class="w-[464px] p-1">
+        <div class=" border-gray-800 p-6 flex flex-col rounded-md gap-4 h-full" data-controller="scroller">
+          <%= form_with url: pokemons_path,
+            method: :get,
+            data: { controller: 'debounce', turbo_frame: "pokemons_page_1" } do |f| %>
+            <div class="relative text-gray-40">
+              <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                <%= render 'icons/search' %>
+              </div>
+              <%= f.text_field :name,
+                placeholder: "Search",
+                autocomplete: 'off',
+                data: { action: 'input->debounce#search input->scroller#scrollToTop' },
+                class: "block w-full rounded-md border-4 border-gray-800 bg-gray-50 py-1.5 pl-10 pr-3 text-gray-900" %>
+            </div>
+          <% end %>
+
+          <div data-scroller-target="scrollable" class="flex flex-col h-full bg-gray-50 border-gray-800 border-4 rounded-md divide-y divide-gray-400 overflow-y-scroll">
+            <%= turbo_frame_tag "pokemons_page_1", src: pokemons_path(page: 1) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

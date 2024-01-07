@@ -1,0 +1,17 @@
+{
+  "name": "Pokepedia",
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "eco"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:eco"
+    }
+  ],
+  "buildpacks": [
+    { "url": "heroku/ruby" }
+  ]
+}

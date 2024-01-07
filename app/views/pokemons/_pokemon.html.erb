@@ -1,0 +1,14 @@
+<%# locals: (pokemon:) -%>
+
+<%= link_to pokemon, data: { turbo_frame: "pokemon_details" } do %>
+  <div class="flex flex-column gap-4 p-4 hover:bg-gray-50 hover:cursor-pointer border-b-2 border-gray-300">
+    <div class="grid content-center">
+      <%= image_tag pokemon.default_sprite, loading: :lazy, class: "h-14" %>
+    </div>
+
+    <div class="grow flex justify-between items-center">
+      <div class="text-md font-bold opacity-90"><%= pokemon.name.humanize%></div>
+      <div><%= render pokemon.types %></div>
+    </div>
+  </div>
+<% end %>

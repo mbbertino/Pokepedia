@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "pokemons_page_#{@page.number}" do %>
+  <%= render @pokemons %>
+
+  <% unless @page.last? %>
+    <%= turbo_frame_tag "pokemons_page_#{@page.next_param}",
+      loading: :lazy,
+      src: pokemons_path(current_params.merge(page: @page.next_param)) do %>
+      <div class="text-center py-4">
+        <%= render 'icons/loading' %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

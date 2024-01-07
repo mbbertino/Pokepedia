@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pokebook</title>
+    <title>PokePedia</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <!-- Player 2 Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ef4444"/>
+    <link rel="apple-touch-icon" sizes="120x120" href=<%= asset_path("pwa_icons/icon-144x144.png")%>>
+    <link rel="apple-touch-icon" sizes="152x152" href=<%= asset_path("pwa_icons/icon-152x152.png")%>>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href=<%= asset_path("favicons/apple-touch-icon.png")%>>
+    <link rel="icon" type="image/png" sizes="32x32" href=<%= asset_path("favicons/favicon-32x32.png")%>>
+    <link rel="icon" type="image/png" sizes="16x16" href=<%= asset_path("favicons/favicon-16x16.png")%>>
+    <link rel="manifest" href= <%= asset_path("favicons/site.webmanifest") %>>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="bg-red-500">
+    <div class="container w-[960px] m-auto">
+      <%= yield %>
+    </div>
   </body>
 </html>
