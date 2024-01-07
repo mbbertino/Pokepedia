@@ -16,8 +16,11 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
 # Custom Gems
+gem "aws-sdk-s3", "~> 1.142"
 gem "faraday"
+gem "geared_pagination", "~> 1.2"
 gem "solid_queue", github: "basecamp/solid_queue", branch: "main"
+gem "tailwindcss-rails", "~> 2.1"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
@@ -36,6 +39,3 @@ end
 # Use Redis for Action Cable
 gem "redis", "~> 4.0"
 
-gem "tailwindcss-rails", "~> 2.1"
-
-gem "geared_pagination", "~> 1.2"

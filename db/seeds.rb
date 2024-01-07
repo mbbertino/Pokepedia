@@ -10,6 +10,9 @@ puts "Importing Stats"
 Stat.import_from_csv
 PokemonStat.import_from_csv
 
+puts "Importing Descriptions"
+Pokemon.import_descriptions
+
 # add a total stat to pokemon
 # PokemonStat.add_totals
 
