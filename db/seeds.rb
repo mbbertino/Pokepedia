@@ -18,7 +18,5 @@ Pokemon.import_descriptions
 
 # Background Jobs...
 # puts "Attaching sprites"
-Pokemon.all.each do |pokemon|
-  Pokemon::AttachSpriteJob.perform_later(pokemon)
-end
+Pokemon.all.each { |pokemon| Pokemon::AttachSpriteJob.perform_later(pokemon) }
 
