@@ -19,6 +19,7 @@ gem "bootsnap", require: false
 gem "aws-sdk-s3", "~> 1.142"
 gem "faraday"
 gem "geared_pagination", "~> 1.2"
+gem "skylight", "~> 6.0"
 gem "solid_queue", github: "basecamp/solid_queue", branch: "main"
 gem "tailwindcss-rails", "~> 2.1"
 
@@ -38,4 +39,3 @@ end
 
 # Use Redis for Action Cable
 gem "redis", "~> 4.0"
-
