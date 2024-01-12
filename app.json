@@ -8,7 +8,7 @@
   },
   "addons": [
     {
-      "plan": "heroku-postgresql:eco"
+      "plan": "heroku-postgresql:basic"
     }
   ],
   "buildpacks": [
