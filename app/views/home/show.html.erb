@@ -25,13 +25,17 @@
             Made with <span class="text-yellow-300">&hearts;</span> by <a target="_blank" href="https://www.mattbertino.com" class="text-yellow-300 underline hover:text-yellow-400">Matt Bertino</a>
           </div>
         </div>
-        <button data-controller="pwa-installer"
-                hidden
-                data-action="pwa-installer#install"
-                class="hidden sm:inline-flex items-center gap-x-1.5 rounded-md bg-yellow-300 px-2.5 py-1.5 text-md font-semibold text-gray-800 hover:bg-yellow-400 border-4 border-gray-800 shadow-[8px_8px_rgba(25,25,27,0.5)]">
-          <%= render 'icons/download' %>
-          Install App
-        </button>
+        <div>
+          <button data-controller="pwa-installer"
+                  hidden
+                  data-action="pwa-installer#install"
+                  class="inline-flex items-center gap-x-1.5 rounded-md bg-yellow-300 px-2.5 py-1.5 text-md font-semibold text-gray-800 hover:bg-yellow-400 border-4 border-gray-800 shadow-[8px_8px_rgba(25,25,27,0.5)]">
+            <%= render 'icons/download' %>
+            <div class="hidden sm:inline-block">
+              Install App
+            </div>
+          </button>
+        </div>
       </div>
     </div>
 
