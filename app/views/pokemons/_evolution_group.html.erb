@@ -3,7 +3,7 @@
 <div class="flex flex-col gap-2">
   <% pokemons.each do |pokemon| %>
     <%= link_to pokemon do %>
-      <%= image_tag pokemon.default_sprite, loading: :lazy, class: " h-20" %>
+      <%= image_tag cdn_image_url(pokemon.default_sprite), loading: :lazy, class: " h-20" %>
     <% end %>
   <% end %>
 </div>

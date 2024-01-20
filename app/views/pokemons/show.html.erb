@@ -4,7 +4,7 @@
       <div class="absolute w-full bg-gray-700 rounded-sm h-full"></div>
 
       <div class="relative">
-        <%= image_tag @pokemon.default_sprite, loading: :lazy, class: "h-48" %>
+        <%= image_tag cdn_image_url(@pokemon.default_sprite), loading: :lazy, class: "h-48" %>
       </div>
     </div>
 
