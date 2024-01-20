@@ -14,32 +14,13 @@ Rails.application.routes.draw do
   get "manifest.json", to: "pwa#manifest"
 
   # config/routes.rb
-  direct :cdn_image do |model, options|
+  direct :cdn_image do |blob|
     if Rails.env.production?
-      expires_in = options.delete(:expires_in) { ActiveStorage.urls_expire_in }
-
-      if model.respond_to?(:signed_id)
-        route_for(
-          :rails_service_blob_proxy,
-          model.signed_id(expires_in: expires_in),
-          model.filename,
-          options.merge(host: Rails.application.credentials.dig(:cdn, :host))
-        )
-      else
-        signed_blob_id = model.blob.signed_id(expires_in: expires_in)
-        variation_key  = model.variation.key
-        filename       = model.blob.filename
-
-        route_for(
-          :rails_blob_representation_proxy,
-          signed_blob_id,
-          variation_key,
-          filename,
-          options.merge(host: Rails.application.credentials.dig(:cdn, :host))
-        )
-      end
+      # Use env for cdn host
+      File.join(Rails.application.credentials.dig(:cdn, :host), blob.key)
     else
-      rails_blob_url(model, options)
+      # Preserve the behaviour of `rails_blob_url` where S3 or the CDN might not be configured
+      route_for(:rails_blob, blob)
     end
   end
 end
