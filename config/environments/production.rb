@@ -91,4 +91,5 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
   config.active_storage.service = :amazon
+  config.active_storage.resolve_model_to_route = :rails_storage_proxy
 end
